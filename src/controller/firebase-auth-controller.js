@@ -32,7 +32,6 @@ const createUserWithEmail = async (user) => {
       password: user.password,
       disabled: false,
     });
-    console.log('user record', userRecord);
     const docRef = db.collection('users').doc(userRecord.email);
     await docRef.set({
       email: userRecord.email,

@@ -3,7 +3,7 @@ import { createUserWithEmail } from './firebase-auth-controller.js';
 
 const requestAuth = async (req, res) => {
   // Controller logic for '/request-auth' route
-  console.log(req);
+
   try {
     const authRequest = await prisma.authRequest.create({
       data: {
@@ -28,7 +28,7 @@ const requestAuth = async (req, res) => {
 
 const getAuthRequests = async (req, res) => {
   // Controller logic for '/get-auth-requests' route
-  console.log(req);
+
   try {
     const authRequests = await prisma.authRequest.findMany();
     res.json(authRequests);
@@ -40,7 +40,6 @@ const getAuthRequests = async (req, res) => {
 
 const getAuthRequestById = async (req, res) => {
   // Controller logic for '/get-auth-request/:id' route
-  console.log(req);
   try {
     const authRequest = await prisma.authRequest.findUnique({
       where: {
