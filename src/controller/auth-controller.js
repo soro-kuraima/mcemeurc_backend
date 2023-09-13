@@ -64,7 +64,7 @@ const approveAuthRequestById = async (req, res) => {
         id: Number(req.query.id),
       },
     });
-    const user = await createUserWithEmail(res, authRequest);
+    const user = await createUserWithEmail(authRequest);
     await prisma.authRequest.delete({
       where: {
         id: Number(req.query.id),
@@ -82,6 +82,7 @@ const approveAuthRequestById = async (req, res) => {
     });
     res.json(user);
   } catch (e) {
+    console.log(e);
     res.status(400).json(e);
   }
 };
