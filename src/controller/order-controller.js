@@ -10,16 +10,16 @@ const getUtilisedLimit = (previousOrders, index) => {
   const limit = previousOrders.reduce((acc, order) => {
     const keys = Object.keys(order.products);
     console.log(keys);
+    let quantity = 0;
     keys.forEach((key) => {
       if (key == index) {
         console.log('order', order);
         console.log(order.products[key]);
         console.log(order.products[key]['quantity']);
-        return acc + Number(order.products[key]['quantity']);
-      } else {
-        return acc;
+        quantity + Number(order.products[key]['quantity']);
       }
     });
+    return acc + quantity;
   }, 0);
   return limit;
 };
