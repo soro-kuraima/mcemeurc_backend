@@ -33,7 +33,7 @@ const verifyOrder = async (req, res) => {
     console.log('order', order);
     const date = new Date();
     const firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
-    const previousOrders = db
+    const previousOrders = await db
       .collection('orders')
       .where('user', '==', email)
       .where('orderDate', '>=', firstDay)
