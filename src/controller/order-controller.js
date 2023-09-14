@@ -8,16 +8,17 @@ const db = getFirestore(firebaseApp);
 
 const getUtilisedLimit = (previousOrders, index) => {
   const limit = previousOrders.reduce((acc, order) => {
-    const product = Object.entries(order.products).find(
-      ([key, value]) => key == index,
-    );
-    if (product) {
-      return acc + product.quantity;
-    } else {
-      return acc;
-    }
+    const keys = Object.keys(order.products);
+    console.log(keys);
+    keys.forEach((key) => {
+      if (key == index) {
+        quantity = Number(order.products[key].quantity);
+        return acc + quantity;
+      } else {
+        return acc;
+      }
+    });
   }, 0);
-
   return limit;
 };
 
