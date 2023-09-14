@@ -29,7 +29,7 @@ const verifyOrder = async (req, res) => {
     const email = decodedToken.email;
     console.log('email', email);
     console.log(req.body);
-    const order = res.body.order;
+    const order = req.body.order;
     console.log('order', order);
     const date = new Date();
     const firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
@@ -69,10 +69,12 @@ const verifyOrder = async (req, res) => {
       res.send('is a valid Order');
       return;
     } else {
+      console.log('from else', orderLimits);
       res.status(400).json(orderLimits);
       return;
     }
   } catch (e) {
+    console.log('from catch block', e);
     res.status(400).json(e);
   }
 };
