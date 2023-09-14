@@ -21,6 +21,6 @@ router.get('/approve-auth-request', approveAuthRequestById);
 
 router.delete('/reject-auth-request', rejectAuthRequestById);
 
-router.post('verify-order', verifyOrder);
+router.post('/verify-order', verifyOrder);
 
 export { router };

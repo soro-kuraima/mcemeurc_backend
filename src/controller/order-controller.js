@@ -36,7 +36,10 @@ const verifyOrder = async (req, res) => {
 
     const orderLimits = order.products.map(async (product) => {
       const quantityAlreadyOrdered = getUtilisedLimit(previousOrders);
-      if (quantityAlreadyOrdered >= product.monthlyLimit) {
+      if (
+        product.monthlyLimit &&
+        quantityAlreadyOrdered >= product.monthlyLimit
+      ) {
         return {
           ...product,
           limitExceeded: true,
