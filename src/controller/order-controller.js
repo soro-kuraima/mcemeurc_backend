@@ -15,8 +15,7 @@ const getUtilisedLimit = (previousOrders, index) => {
         console.log('order', order);
         console.log(order.products[key]);
         console.log(order.products[key]['quantity']);
-        quantity = Number(order.products[key].quantity);
-        return acc + quantity;
+        return acc + Number(order.products[key]['quantity']);
       } else {
         return acc;
       }
