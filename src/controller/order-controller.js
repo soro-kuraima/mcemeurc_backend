@@ -20,12 +20,16 @@ const getUtilisedLimit = (previousOrders, index) => {
 };
 
 const verifyOrder = async (req, res) => {
+  console.log('jwk token', req.query.idToken);
   try {
     const decodedToken = await getAuth(firebaseApp).verifyIdToken(
       req.query.idToken,
     );
+    console.log('decoded token', decodedToken);
+    console.log('email', email);
     const email = decodedToken.email;
     const order = res.body.order;
+    console.log('order', order);
     const date = new Date();
     const firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
     const previousOrders = db
@@ -33,6 +37,8 @@ const verifyOrder = async (req, res) => {
       .where('user', '==', email)
       .where('orderDate', '>=', firstDay)
       .get();
+
+    console.log('previous orders', previousOrders);
 
     const orderLimits = order.products.map(async (product) => {
       const quantityAlreadyOrdered = getUtilisedLimit(previousOrders);
@@ -52,9 +58,12 @@ const verifyOrder = async (req, res) => {
         };
       }
     });
+
+    console.log('order limits', orderLimits);
     const isValidOrder = orderLimits.every(
       (orderLimit) => !orderLimit.limitExceeded,
     );
+    console.log('is valid order', isValidOrder);
     if (isValidOrder) {
       res.send('is a valid Order');
       return;
