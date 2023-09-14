@@ -26,8 +26,9 @@ const verifyOrder = async (req, res) => {
       req.query.idToken,
     );
     console.log('decoded token', decodedToken);
-    console.log('email', email);
     const email = decodedToken.email;
+    console.log('email', email);
+    console.log(req.body);
     const order = res.body.order;
     console.log('order', order);
     const date = new Date();
