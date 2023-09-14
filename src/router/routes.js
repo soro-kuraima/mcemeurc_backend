@@ -7,7 +7,7 @@ import {
   approveAuthRequestById,
 } from '../controller/auth-controller.js';
 
-import { placeOrder } from '../controller/order-controller.js';
+import { verifyOrder } from '../controller/order-controller.js';
 
 const router = express.Router();
 
@@ -21,6 +21,6 @@ router.get('/approve-auth-request', approveAuthRequestById);
 
 router.delete('/reject-auth-request', rejectAuthRequestById);
 
-router.post('place-order', placeOrder);
+router.post('verify-order', verifyOrder);
 
 export { router };
