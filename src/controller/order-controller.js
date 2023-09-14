@@ -16,9 +16,11 @@ const getUtilisedLimit = (previousOrders, index) => {
         console.log('order', order);
         console.log(order.products[key]);
         console.log(order.products[key]['quantity']);
-        quantity + Number(order.products[key]['quantity']);
+        quantity += Number(order.products[key]['quantity']);
+        console.log('quantity inside forEach loop', quantity);
       }
     });
+    console.log('quantity outside for each loop', quantity);
     return acc + quantity;
   }, 0);
   return limit;
@@ -53,7 +55,7 @@ const verifyOrder = async (req, res) => {
         product.index.toString(),
       );
       console.log(
-        `${quantityAlreadyOrdered} for user ${product.index} with monthly limit ${product.monthlyLimit}`,
+        `${quantityAlreadyOrdered} for product ${product.index} with monthly limit ${product.monthlyLimit}`,
       );
       if (
         product.monthlyLimit &&
