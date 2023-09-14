@@ -50,7 +50,7 @@ const verifyOrder = async (req, res) => {
         product.index.toString(),
       );
       console.log(
-        '${quantityALreadyOrdered} for user ${product.index} with monthly limit ${product.monthlyLimit}',
+        `${quantityAlreadyOrdered} for user ${product.index} with monthly limit ${product.monthlyLimit}`,
       );
       if (
         product.monthlyLimit &&
