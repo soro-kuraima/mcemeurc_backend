@@ -39,7 +39,7 @@ const verifyOrder = async (req, res) => {
       .where('orderDate', '>=', firstDay)
       .get();
 
-    const previousOrders = querySnapshot.docs;
+    const previousOrders = querySnapshot.docs.map((doc) => doc.data());
     console.log('previous orders', previousOrders);
 
     const orderLimits = order.products.map(async (product) => {
