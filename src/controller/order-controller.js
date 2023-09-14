@@ -49,7 +49,7 @@ const verifyOrder = async (req, res) => {
     const previousOrders = querySnapshot.docs.map((doc) => doc.data());
     console.log('previous orders', previousOrders);
 
-    const orderLimits = order.products.map(async (product) => {
+    const orderLimits = order.products.map((product) => {
       const quantityAlreadyOrdered = getUtilisedLimit(
         previousOrders,
         product.index.toString(),
