@@ -19,4 +19,6 @@ router.get('/approve-auth-request', approveAuthRequestById);
 
 router.delete('/reject-auth-request', rejectAuthRequestById);
 
+router.post('place-order', placeOrder);
+
 export { router };
