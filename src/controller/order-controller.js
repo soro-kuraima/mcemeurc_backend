@@ -33,12 +33,13 @@ const verifyOrder = async (req, res) => {
     console.log('order', order);
     const date = new Date();
     const firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
-    const previousOrders = await db
+    const querySnapshot = await db
       .collection('orders')
       .where('user', '==', email)
       .where('orderDate', '>=', firstDay)
       .get();
 
+    const previousOrders = querySnapshot.docs;
     console.log('previous orders', previousOrders);
 
     const orderLimits = order.products.map(async (product) => {
