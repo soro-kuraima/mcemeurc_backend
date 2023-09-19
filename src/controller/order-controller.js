@@ -59,12 +59,13 @@ const verifyOrder = async (req, res) => {
       );
       if (
         product.monthlyLimit &&
-        quantityAlreadyOrdered >= product.monthlyLimit
+        quantityAlreadyOrdered + product.quantity > product.monthlyLimit
       ) {
         return {
           ...product,
           limitExceeded: true,
-          exceededBy: quantityAlreadyOrdered - product.monthlyLimit,
+          exceededBy:
+            quantityAlreadyOrdered + product.quantity - product.monthlyLimit,
         };
       } else {
         return {

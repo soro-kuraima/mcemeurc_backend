@@ -39,6 +39,7 @@ const createUserWithEmail = async (user) => {
       rank: user.rank,
       groceryCardNo: user.groceryCardNo,
       address: user.address,
+      phone: user.phone,
     });
     return userRecord;
   } catch (e) {

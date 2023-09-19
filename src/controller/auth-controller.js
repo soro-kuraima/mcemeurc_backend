@@ -13,6 +13,7 @@ const requestAuth = async (req, res) => {
         address: req.body.address,
         name: req.body.name,
         rank: req.body.rank,
+        phone: req.body.phone,
       },
     });
     res.send('Created Auth Request');
@@ -79,6 +80,7 @@ const approveAuthRequestById = async (req, res) => {
         address: authRequest.address,
         name: authRequest.name,
         rank: authRequest.rank,
+        phone: authRequest.phone,
       },
     });
     res.json(user);
