@@ -92,6 +92,7 @@ const verifyOrder = async (req, res) => {
       (orderLimit) => !orderLimit.limitExceeded,
     );
     console.log('is valid order', isValidOrder);
+    console.log(monthlyValue + order.orderValue);
     if (isValidOrder && monthlyValue + order.orderValue < 5000) {
       res.send('is a valid Order');
       return;
