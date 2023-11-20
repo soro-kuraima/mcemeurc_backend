@@ -26,6 +26,14 @@ const getUtilisedLimit = (previousOrders, index) => {
   return limit;
 };
 
+const getOrderValuePlaced = (previousOrders) => {
+  const monthlyValue = previousOrders.reduce((acc, order) => {
+    return acc + order.orderValue
+  }, 0);
+
+  return monthlyValue;
+}
+
 const verifyOrder = async (req, res) => {
   console.log('jwk token', req.query.idToken);
   try {
@@ -76,6 +84,10 @@ const verifyOrder = async (req, res) => {
     });
 
     console.log('order limits', orderLimits);
+    const monthlyValue = getOrderValuePlaced(previousOrders);
+    if (monthlyValue + order.orderValue > 5000) {
+      res.status(400).json({});
+    }
     const isValidOrder = orderLimits.every(
       (orderLimit) => !orderLimit.limitExceeded,
     );
