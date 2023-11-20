@@ -86,7 +86,11 @@ const verifyOrder = async (req, res) => {
     console.log('order limits', orderLimits);
     const monthlyValue = getOrderValuePlaced(previousOrders);
     if (monthlyValue + order.orderValue > 5000) {
-      res.status(400).json({});
+      res.status(400).json({
+        message: `Monthly gross order value exceeds ${
+          monthlyValue + order.orderValue
+        }`,
+      });
       return;
     }
     console.log(monthlyValue);
